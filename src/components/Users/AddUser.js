@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 
 import Button from "../UI/Button";
 import Card from "../UI/Card";
+import ErrorModal from "../UI/ErrorModal";
 
 import classes from "./AddUser.module.css";
 
@@ -33,20 +34,28 @@ const AddUser = ({ onAddUser }) => {
 	};
 
 	return (
-		<Card className={classes.input}>
-			<form onSubmit={addUserHandler}>
-				<label htmlFor="username">Username</label>
-				<input
-					id="username"
-					type="text"
-					value={userName}
-					onChange={userNameChangeHandler}
-				/>
-				<label htmlFor="age">Age (Years)</label>
-				<input id="age" type="number" value={age} onChange={ageChangeHandler} />
-				<Button type="submit">Add User</Button>
-			</form>
-		</Card>
+		<Fragment>
+			<ErrorModal title="An error occured!" message="Something went wrong!" />
+			<Card className={classes.input}>
+				<form onSubmit={addUserHandler}>
+					<label htmlFor="username">Username</label>
+					<input
+						id="username"
+						type="text"
+						value={userName}
+						onChange={userNameChangeHandler}
+					/>
+					<label htmlFor="age">Age (Years)</label>
+					<input
+						id="age"
+						type="number"
+						value={age}
+						onChange={ageChangeHandler}
+					/>
+					<Button type="submit">Add User</Button>
+				</form>
+			</Card>
+		</Fragment>
 	);
 };
 
